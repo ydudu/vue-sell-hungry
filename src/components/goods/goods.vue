@@ -51,6 +51,7 @@
   import shopcart from 'components/shopcart/shopcart';
   import cartcontrol from 'components/cartcontrol/cartcontrol';
   import food from 'components/food/food';
+  import data from 'common/data/data.json'
 
   const ERR_OK = 0;
   export default {
@@ -95,16 +96,21 @@
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
 
       //const url = debug ? '/api/goods' : 'http://ustbhuangyi.com/sell/api/goods';
-      this.$http.get('/api/goods').then((response) => {
-        response = response.body;
-        if (response.errno === ERR_OK) {
-          this.goods = response.data;
-          this.$nextTick(() => {
-            this._initScroll();
-            this._calculateHeight();
-          });
-        }
-      });
+      // this.$http.get('/api/goods').then((response) => {
+      //   response = response.body;
+      //   if (response.errno === ERR_OK) {
+      //     this.goods = response.data;
+      //     this.$nextTick(() => {
+      //       this._initScroll();
+      //       this._calculateHeight();
+      //     });
+      //   }
+      // });
+      this.goods = data.goods;
+      this.$nextTick(() =>{
+        this._initScroll();
+        this._calculateHeight();
+      })
     },
     methods: {
       selectMenu(index, event) {

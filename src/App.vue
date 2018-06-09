@@ -19,24 +19,30 @@
 <script>
 
   import Header from '@/components/header/header.vue'
-
+  import {urlParse} from 'common/js/util'
+  import data from 'common/data/data.json'
   const ERR_OK = 0;
 
 export default {
   components:{Header},
-  data () {
+  data() {
     return {
-      seller: {}
+      seller: {
+        id: (() => {
+          let queryParam = urlParse();
+          return queryParam.id;
+        })()
+      }
     }
   },
   created() {
-    this.$http.get('/api/seller').then((response) => {
-      response = response.body;
-      if(response.errno === ERR_OK) {
-        this.seller = response.data;
-        console.log(this.seller)
-      }
-    })
+    // this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
+    //   response = response.body;
+    //   if(response.errno === ERR_OK) {
+    //     this.seller = Object.assign({}, this.seller, response.data);
+    //   }
+    // })
+    this.seller = Object.assign({}, this.seller, data.seller);
   }
 }
 </script>

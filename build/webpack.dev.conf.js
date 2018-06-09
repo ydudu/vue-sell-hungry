@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
-const appData = require('../data.json')
+const appData = require('../src/common/data/data.json')
 const seller = appData.seller
 const goods = appData.goods
 const ratings = appData.ratings
